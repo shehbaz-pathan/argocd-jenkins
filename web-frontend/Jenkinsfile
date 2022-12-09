@@ -9,7 +9,6 @@ pipeline {
           when {
             changeset "web-frontend/**"
           }
-        }
            steps {
                sh '''
                  until docker container ls ; do sleep 3 ;done && docker build -t ${dockerhub_USR}/customer-info:web-frontend-${GIT_COMMIT} ./web-frontend/
@@ -39,4 +38,4 @@ pipeline {
        }
 
      }
-
+}

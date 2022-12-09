@@ -9,7 +9,6 @@ pipeline {
           when {
             changeset "customers/**"
           }
-        }
            steps {
                sh '''
                  until docker container ls ; do sleep 3 ;done && docker build -t ${dockerhub_USR}/customer-info:customers-${GIT_COMMIT} ./customers/
@@ -38,3 +37,4 @@ pipeline {
        }
 
      }
+}
