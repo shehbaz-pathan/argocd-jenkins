@@ -7,10 +7,8 @@ pipeline {
      stages {
         stage('build') {
           when {
-            allOf {
             changeset "customers/**"
-            not { changeset pattern: "Jenkinsfile" }
-            }
+          }
         }
            steps {
                sh '''
@@ -22,21 +20,19 @@ pipeline {
        stage('deploy') {
         
           when {
-            allOf {
             changeset "customers/**"
-            not { changeset pattern: "Jenkinsfile" }
-            }
           }
 
            steps {
                sh '''
                      git config --global user.email "khanshehbaz104@gmail.com" 
                      git checkout argocd
+                     git pull origin argocd
                      export image_tag="${dockerhub_USR}/customer-info:customers-${GIT_COMMIT}" 
                      yq eval '.spec.template.spec.containers[0].image = env(image_tag)' -i ./manifests/customers.yaml
                      git add . 
                      git commit -m "Updated image tag for customers" 
-                     git push https://${github_USR}:${github_PSW}@github.com/shehbaz-pathan/simple-microservices-app.git
+                     git push https://${github_USR}:${github_PSW}@github.com/shehbaz-pathan/argocd-jenkins.git
                   '''
            }
        }
