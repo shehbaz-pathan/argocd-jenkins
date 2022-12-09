@@ -9,7 +9,6 @@ spec:
   selector:
     matchLabels:
       app: customers
-      version: v2
   template:
     metadata:
       labels:
