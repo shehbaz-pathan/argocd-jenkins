@@ -1,52 +1,42 @@
 [
     {
         "name": "Jewel Schaefer",
-	"id": 1,
-	"age": 30
+	"id": 1
     },
     {
         "name": "Raleigh Larson",
-	"id": 2,
-	"age": 25
+	"id": 2
     },
     {
         "name": "Eloise Senger",
-	"id": 3,
-	"age": 50
+	"id": 3
     },
     {
         "name": "Moshe Zieme",
-	"id": 4,
-	"age": 29
+	"id": 4
     },
     {
         "name": "Filiberto Lubowitz",
-	"id": 5,
-	"age": 45
+	"id": 5
     },
     {
         "name": "Ms.Kadin Kling",
-	"id": 6,
-	"age": 32
+	"id": 6
     },
     {
         "name": "Jennyfer Bergstrom",
-	"id": 7,
-	"age": 28
+	"id": 7
     },
     {
         "name": "Candelario Rutherford",
-	"id": 8,
-	"age": 22
+	"id": 8
     },
     {
         "name": "Kenyatta Flatley",
-	"id": 9,
-	"age": 43
+	"id": 9
     },
     {
         "name": "Gianni Pouros",
-	"id": 10,
-	"age": 26
+	"id": 10
     }
 ]
