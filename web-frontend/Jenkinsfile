@@ -8,7 +8,7 @@ pipeline {
         stage('build') {
           when {
             allOf {
-            changeset "./web-frontend/**"
+            changeset "web-frontend/**"
             not { changeset pattern: "Jenkinsfile" }
             }
         }
@@ -23,7 +23,7 @@ pipeline {
         
           when {
             allOf {
-            changeset "./web-frontend/**"
+            changeset "web-frontend/**"
             not { changeset pattern: "Jenkinsfile" }
             }
           }
