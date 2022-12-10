@@ -16,7 +16,7 @@ spec:
         app: web-frontend
     spec:
       containers:
-        - image: 6255/customer-info:web-frontend-783157e89108fb6205b7a77920a7b44573a3e8aa
+        - image: 6255/customer-info:web-frontend-55497d43196157d2d80211718011945de48ff45d
           imagePullPolicy: Always
           name: web
           ports:
@@ -27,12 +27,12 @@ spec:
   strategy:
     canary:
       steps:
-      - setWeight: 10
-      - pause:
-          duration: 2m
-      - setWeight: 20
-      - pause:
-          duration: 2m
-      - setWeight: 50
-      - pause:
-          duration: 2m
+        - setWeight: 10
+        - pause:
+            duration: 2m
+        - setWeight: 20
+        - pause:
+            duration: 2m
+        - setWeight: 50
+        - pause:
+            duration: 2m
