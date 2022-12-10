@@ -16,7 +16,7 @@ spec:
         app: customers
     spec:
       containers:
-        - image: 6255/customer-info:customers-7efbd1643a0e3b8b957b5241dc3c444d886d5c8b
+        - image: 6255/customer-info:customers-f6df5d5aa3d3ebdaf517e872b3fdcc9f2e803d2f
           imagePullPolicy: Always
           name: svc
           ports:
@@ -24,12 +24,12 @@ spec:
   strategy:
     canary:
       steps:
-      - setWeight: 10
-      - pause:
-          duration: 2m
-      - setWeight: 20
-      - pause:
-          duration: 2m
-      - setWeight: 50
-      - pause:
-          duration: 2m
+        - setWeight: 10
+        - pause:
+            duration: 2m
+        - setWeight: 20
+        - pause:
+            duration: 2m
+        - setWeight: 50
+        - pause:
+            duration: 2m
