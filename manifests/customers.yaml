@@ -1,10 +1,11 @@
-apiVersion: apps/v1
-kind: Deployment
+apiVersion: argoproj.io/v1alpha1
+kind: Rollout
 metadata:
   name: customers
   labels:
     app: customers
 spec:
+  revisionHistoryLimit: 3
   replicas: 1
   selector:
     matchLabels:
@@ -20,3 +21,14 @@ spec:
           name: svc
           ports:
             - containerPort: 3000
+  strategy:
+    canary:
+      steps:
+      - setWeight: 10
+      - pause:
+          duration: 2m
+      - setWeight: 20
+      - pause:
+          duration: 2m
+      - setWeight: 50
+          duration: 2m

@@ -1,10 +1,11 @@
-apiVersion: apps/v1
-kind: Deployment
+apiVersion: argoproj.io/v1alpha1
+kind: Rollout
 metadata:
   name: web-frontend
   labels:
     app: web-frontend
 spec:
+  revisionHistoryLimit: 3
   replicas: 1
   selector:
     matchLabels:
@@ -23,3 +24,14 @@ spec:
           env:
             - name: CUSTOMER_SERVICE_URL
               value: 'http://customers'
+  strategy:
+    canary:
+      steps:
+      - setWeight: 10
+      - pause:
+          duration: 2m
+      - setWeight: 20
+      - pause:
+          duration: 2m
+      - setWeight: 50
+          duration: 2m
