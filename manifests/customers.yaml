@@ -1,11 +1,10 @@
-apiVersion: argoproj.io/v1alpha1
-kind: Rollout
+apiVersion: apps/v1
+kind: Deployment
 metadata:
   name: customers
   labels:
     app: customers
 spec:
-  revisionHistoryLimit: 3
   replicas: 1
   selector:
     matchLabels:
@@ -16,20 +15,8 @@ spec:
         app: customers
     spec:
       containers:
-        - image: 6255/customer-info:customers-f6df5d5aa3d3ebdaf517e872b3fdcc9f2e803d2f
+        - image: gcr.io/tetratelabs/customers:1.0.0 
           imagePullPolicy: Always
           name: svc
           ports:
             - containerPort: 3000
-  strategy:
-    canary:
-      steps:
-        - setWeight: 10
-        - pause:
-            duration: 2m
-        - setWeight: 20
-        - pause:
-            duration: 2m
-        - setWeight: 50
-        - pause:
-            duration: 2m
