@@ -7,8 +7,11 @@ pipeline {
      stages {
         stage('build') {
           when {
+           allOf {
             changeset "web-frontend/**"
+            not { changeset pattern: "web-frontend/Jenkinsfile" }
           }
+}
            steps {
                sh '''
                  until docker container ls ; do sleep 3 ;done && docker build -t ${dockerhub_USR}/customer-info:web-frontend-${GIT_COMMIT} ./web-frontend/
@@ -19,8 +22,11 @@ pipeline {
        stage('deploy') {
         
           when {
+           allOf {
             changeset "web-frontend/**"
+            not { changeset pattern: "web-frontend/Jenkinsfile" }
           }
+}
 
            steps {
                sh '''

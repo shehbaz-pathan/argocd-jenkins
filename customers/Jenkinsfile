@@ -7,8 +7,11 @@ pipeline {
      stages {
         stage('build') {
           when {
+           allOf {
             changeset "customers/**"
+            not { changeset pattern: "customers/Jenkinsfile" }
           }
+}
            steps {
                sh '''
                  until docker container ls ; do sleep 3 ;done && docker build -t ${dockerhub_USR}/customer-info:customers-${GIT_COMMIT} ./customers/
@@ -19,8 +22,11 @@ pipeline {
        stage('deploy') {
         
           when {
+           allOf {
             changeset "customers/**"
+            not { changeset pattern: "customers/Jenkinsfile" }
           }
+}
 
            steps {
                sh '''
